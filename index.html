@@ -3,22 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>QA Crawler — daily QA job digest</title>
+<title>QA Crawler — daily digest of QA job posts from Telegram</title>
+<meta name="description" content="QA Crawler is a personal tool that collects QA job postings from public Telegram channels and emails a daily digest to its owner.">
 <style>
   :root { color-scheme: light; }
   * { box-sizing: border-box; }
   body {
     margin: 0; padding: 48px 20px; background: #f6f8f7; color: #14201b;
-    font: 16px/1.6 -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font: 16px/1.65 -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   }
-  main { max-width: 640px; margin: 0 auto; background: #fff; border-radius: 16px;
+  main { max-width: 720px; margin: 0 auto; background: #fff; border-radius: 16px;
          padding: 40px; box-shadow: 0 1px 3px rgba(16, 24, 40, .08); }
   img { display: block; width: 96px; height: 96px; border-radius: 22px; }
-  h1 { margin: 20px 0 8px; font-size: 30px; letter-spacing: -.02em; }
-  .lead { margin: 0 0 20px; font-size: 17px; color: #3d4b45; }
-  ul { margin: 0 0 20px; padding-left: 20px; color: #3d4b45; }
+  h1 { margin: 20px 0 8px; font-size: 32px; letter-spacing: -.02em; }
+  h2 { margin: 30px 0 10px; font-size: 19px; }
+  .lead { margin: 0 0 8px; font-size: 18px; color: #3d4b45; }
+  ul { margin: 0 0 12px; padding-left: 20px; color: #3d4b45; }
   li { margin: 6px 0; }
   a { color: #047857; }
+  .note { margin: 24px 0 0; padding: 16px 18px; background: #f1f7f4;
+          border-radius: 12px; font-size: 14px; color: #3d4b45; }
   footer { margin-top: 28px; padding-top: 18px; border-top: 1px solid #e4e9e6;
            font-size: 14px; color: #6b7a73; }
 </style>
@@ -27,14 +31,49 @@
 <main>
   <img src="logo.png" alt="QA Crawler logo">
   <h1>QA Crawler</h1>
-  <p class="lead">A personal tool that collects QA job posts from public Telegram
-     channels and delivers one digest email a day.</p>
+  <p class="lead">A personal tool that collects QA job postings from public Telegram
+     channels and emails one digest a day.</p>
+
+  <h2>Purpose</h2>
+  <p>QA Crawler exists for a single reason: QA specialists follow many Telegram
+     channels with job postings, and reading them all every day is noisy. The
+     application watches those public channels, keeps only the relevant vacancies,
+     and sends one compact email digest at the end of the day.</p>
+
+  <h2>What the application does</h2>
   <ul>
-    <li>Reads posts from public Telegram channels only.</li>
-    <li>Sends a single digest email to its owner through the Gmail API.</li>
-    <li>Runs locally on the owner's computer — there are no external servers.</li>
-    <li>Not a public service: the tool is used by its author.</li>
+    <li>Reads posts from <strong>public</strong> Telegram channels — the same pages
+        anyone can open in a browser at <code>t.me/s/&lt;channel&gt;</code>.</li>
+    <li>Filters them by keywords, exclusions, and a relevance score.</li>
+    <li>Builds a single HTML digest and sends it to the owner's own mailbox through
+        the <strong>Gmail API</strong>.</li>
+    <li>Stores a small local database to avoid sending the same vacancy twice.</li>
   </ul>
+
+  <h2>Who uses it</h2>
+  <p>This is a personal, single-user tool operated by its author. It is not a public
+     service, has no sign-up, and is not offered to third parties.</p>
+
+  <h2>How it runs</h2>
+  <p>Everything happens on the owner's computer. There is no backend server, no
+     cloud storage, and no analytics. The only network calls are: fetching public
+     channel pages and calling the Gmail API to send the digest.</p>
+
+  <h2>Data and privacy</h2>
+  <p>The application reads public channel posts and uses the
+     <code>gmail.send</code> scope only — it cannot read or modify mailbox contents.
+     Details, including retention and deletion, are in the
+     <a href="privacy.html">privacy policy</a>.</p>
+
+  <div class="note">
+    <strong>Compliance.</strong> QA Crawler complies with the Google APIs Terms of
+    Service and the Google API Services User Data Policy, including the Limited Use
+    requirements. The application does not generate, process, or distribute
+    AI-generated imagery of any kind, including non-consensual intimate imagery
+    (NCII), and does not use Google APIs for such purposes. It is not affiliated
+    with Google or Telegram.
+  </div>
+
   <footer>
     Contact: <a href="mailto:petr.kliucharev@gmail.com">petr.kliucharev@gmail.com</a><br>
     <a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of service</a>
